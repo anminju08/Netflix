@@ -8,6 +8,7 @@ Netflix 클론 프로젝트입니다.
 - Styled-components / TailwindCSS
  
  ## 파일 구조
+ <pre>
  src/
 ├── assets/            
 ├── components/        
@@ -49,7 +50,7 @@ Netflix 클론 프로젝트입니다.
 │   └── helpers.ts
 ├── App.tsx
 └── main.tsx        
-
+</pre>
 ## 🚀 실행 방법
 
 ```bash
