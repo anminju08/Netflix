@@ -1,11 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import movie1 from "../../assets/movie1.svg";
-import movie2 from "../../assets/movie2.svg";
-import movie3 from "../../assets/movie3.svg";
-import movie4 from "../../assets/movie4.svg";
-import movie5 from "../../assets/movie5.svg";
-
+import movie1 from "../../assets/thumnail/movie1.svg";
+import movie2 from "../../assets/thumnail/movie2.svg";
+import movie3 from "../../assets/thumnail/movie3.svg";
+import movie4 from "../../assets/thumnail/movie4.svg";
+import movie5 from "../../assets/thumnail/movie5.svg";
 
 const movieImages = [
   movie1,
@@ -31,17 +30,17 @@ export default function Home() {
         <SectionTitle>한국이 만든 콘텐츠</SectionTitle>
         <Row>
           {movieImages.map((src, idx) => (
-            <Thumbnail key={idx}>
-              <ThumbnailImage src={src} alt={`Movie ${idx + 1}`} />
+            <Thumbnail key={`korean-${idx}`}>
+              <ThumbnailImage src={src} alt={`Korean Movie ${idx + 1}`} />
             </Thumbnail>
           ))}
         </Row>
 
-        <SectionTitle>{}님이 시청중인 콘텐츠</SectionTitle>
+        <SectionTitle>지금 시청중인 콘텐츠</SectionTitle>
         <Row>
           {movieImages.map((src, idx) => (
-            <Thumbnail key={idx}>
-              <ThumbnailImage src={src} alt={`Movie ${idx + 1}`} />
+            <Thumbnail key={`watching-${idx}`}>
+              <ThumbnailImage src={src} alt={`Watching Movie ${idx + 1}`} />
             </Thumbnail>
           ))}
         </Row>
@@ -49,8 +48,26 @@ export default function Home() {
         <SectionTitle>지금 뜨는 콘텐츠</SectionTitle>
         <Row>
           {movieImages.map((src, idx) => (
-            <Thumbnail key={idx}>
-              <ThumbnailImage src={src} alt={`Movie ${idx + 1}`} />
+            <Thumbnail key={`trending-${idx}`}>
+              <ThumbnailImage src={src} alt={`Trending Movie ${idx + 1}`} />
+            </Thumbnail>
+          ))}
+        </Row>
+
+        <SectionTitle>추천 콘텐츠</SectionTitle>
+        <Row>
+          {movieImages.map((src, idx) => (
+            <Thumbnail key={`recommended-${idx}`}>
+              <ThumbnailImage src={src} alt={`Recommended Movie ${idx + 1}`} />
+            </Thumbnail>
+          ))}
+        </Row>
+
+        <SectionTitle>액션 영화</SectionTitle>
+        <Row>
+          {movieImages.map((src, idx) => (
+            <Thumbnail key={`action-${idx}`}>
+              <ThumbnailImage src={src} alt={`Action Movie ${idx + 1}`} />
             </Thumbnail>
           ))}
         </Row>
@@ -112,8 +129,8 @@ const Row = styled.div`
 `;
 
 const Thumbnail = styled.div`
-  min-width: 310px;
-  height: 180px;
+  min-width: 280px;
+  height: 160px;
   background-color: #333;
   border-radius: 2px;
   overflow: hidden;
