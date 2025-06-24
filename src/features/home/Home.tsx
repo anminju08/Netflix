@@ -1,4 +1,4 @@
-import React from 'react';
+
 import styled from 'styled-components';
 import movie1 from "../../assets/thumnail/movie1.svg";
 import movie2 from "../../assets/thumnail/movie2.svg";
