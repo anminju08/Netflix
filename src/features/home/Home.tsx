@@ -5,6 +5,7 @@ import movie2 from "../../assets/thumnail/movie2.svg";
 import movie3 from "../../assets/thumnail/movie3.svg";
 import movie4 from "../../assets/thumnail/movie4.svg";
 import movie5 from "../../assets/thumnail/movie5.svg";
+import banner from "../../assets/thumnail/banner.svg";
 
 const movieImages = [
   movie1,
@@ -14,10 +15,13 @@ const movieImages = [
   movie5,
 ];
 
+const banneres = banner;
+
 export default function Home() {
   return (
     <Container>
       <Banner>
+        {banneres}
         <BannerContent>
           <BannerTitle>넷플릭스 오리지널</BannerTitle>
           <BannerDescription>
