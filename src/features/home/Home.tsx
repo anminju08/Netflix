@@ -1,4 +1,3 @@
-
 import styled from 'styled-components';
 import movie1 from "../../assets/thumnail/movie1.svg";
 import movie2 from "../../assets/thumnail/movie2.svg";
@@ -6,6 +5,7 @@ import movie3 from "../../assets/thumnail/movie3.svg";
 import movie4 from "../../assets/thumnail/movie4.svg";
 import movie5 from "../../assets/thumnail/movie5.svg";
 import banner from "../../assets/thumnail/banner.svg";
+import MovieCard from "../../components/MovieCard";
 
 const movieImages = [
   movie1,
@@ -21,7 +21,9 @@ export default function Home() {
   return (
     <Container>
       <Banner>
-        {banneres}
+        <BannerImage src={banneres} alt="배너" />
+        <BannerOverlay />
+        <BannerGradient />
         <BannerContent>
           <BannerTitle>넷플릭스 오리지널</BannerTitle>
           <BannerDescription>
@@ -31,50 +33,65 @@ export default function Home() {
       </Banner>
 
       <ContentWrapper>
-        <SectionTitle>한국이 만든 콘텐츠</SectionTitle>
-        <Row>
-          {movieImages.map((src, idx) => (
-            <Thumbnail key={`korean-${idx}`}>
-              <ThumbnailImage src={src} alt={`Korean Movie ${idx + 1}`} />
-            </Thumbnail>
-          ))}
-        </Row>
+      <SectionTitle>한국이 만든 콘텐츠</SectionTitle>
+<Row>
+  {movieImages.map((src, idx) => (
+    <MovieCard
+      key={`korean-${idx}`}
+      src={src}
+      alt={`Korean Movie ${idx + 1}`}
+      title={`한국영화 ${idx + 1}`}
+    />
+  ))}
+</Row>
 
-        <SectionTitle>지금 시청중인 콘텐츠</SectionTitle>
-        <Row>
-          {movieImages.map((src, idx) => (
-            <Thumbnail key={`watching-${idx}`}>
-              <ThumbnailImage src={src} alt={`Watching Movie ${idx + 1}`} />
-            </Thumbnail>
-          ))}
-        </Row>
+<SectionTitle>어워드 수상 영화</SectionTitle>
+<Row>
+  {movieImages.map((src, idx) => (
+    <MovieCard
+      key={`korean-${idx}`}
+      src={src}
+      alt={`Korean Movie ${idx + 1}`}
+      title={`한국영화 ${idx + 1}`}
+    />
+  ))}
+</Row>
 
-        <SectionTitle>지금 뜨는 콘텐츠</SectionTitle>
-        <Row>
-          {movieImages.map((src, idx) => (
-            <Thumbnail key={`trending-${idx}`}>
-              <ThumbnailImage src={src} alt={`Trending Movie ${idx + 1}`} />
-            </Thumbnail>
-          ))}
-        </Row>
+<SectionTitle>몰아보기 추천</SectionTitle>
+<Row>
+  {movieImages.map((src, idx) => (
+    <MovieCard
+      key={`korean-${idx}`}
+      src={src}
+      alt={`Korean Movie ${idx + 1}`}
+      title={`한국영화 ${idx + 1}`}
+    />
+  ))}
+</Row>
 
-        <SectionTitle>추천 콘텐츠</SectionTitle>
-        <Row>
-          {movieImages.map((src, idx) => (
-            <Thumbnail key={`recommended-${idx}`}>
-              <ThumbnailImage src={src} alt={`Recommended Movie ${idx + 1}`} />
-            </Thumbnail>
-          ))}
-        </Row>
+<SectionTitle>보고 또 봐도 좋은 명작</SectionTitle>
+<Row>
+  {movieImages.map((src, idx) => (
+    <MovieCard
+      key={`korean-${idx}`}
+      src={src}
+      alt={`Korean Movie ${idx + 1}`}
+      title={`한국영화 ${idx + 1}`}
+    />
+  ))}
+</Row>
 
-        <SectionTitle>액션 영화</SectionTitle>
-        <Row>
-          {movieImages.map((src, idx) => (
-            <Thumbnail key={`action-${idx}`}>
-              <ThumbnailImage src={src} alt={`Action Movie ${idx + 1}`} />
-            </Thumbnail>
-          ))}
-        </Row>
+<SectionTitle>흥미진진한 시리즈</SectionTitle>
+<Row>
+  {movieImages.map((src, idx) => (
+    <MovieCard
+      key={`korean-${idx}`}
+      src={src}
+      alt={`Korean Movie ${idx + 1}`}
+      title={`한국영화 ${idx + 1}`}
+    />
+  ))}
+</Row>
       </ContentWrapper>
     </Container>
   );
@@ -84,16 +101,46 @@ const Container = styled.div`
   background-color: black;
   color: white;
   min-height: 100vh;
-  width: 100%;
+  width: 100vw;
   margin: 0;
   box-sizing: border-box;
+  
 `;
 
 const Banner = styled.div`
   width: 100%;
   height: 80vh;
-  background-color: yellow;
   position: relative;
+`;
+
+const BannerImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+`;
+
+const BannerOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.45);
+  z-index: 1;
+`;
+
+const BannerGradient = styled.div`
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 40%;
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 60%, rgba(0,0,0,1) 100%);
+  z-index: 2;
 `;
 
 const BannerContent = styled.div`
@@ -101,6 +148,7 @@ const BannerContent = styled.div`
   bottom: 100px;
   left: 50px;
   max-width: 500px;
+  z-index: 3;
 `;
 
 const BannerTitle = styled.h1`
@@ -113,43 +161,26 @@ const BannerDescription = styled.p`
 `;
 
 const ContentWrapper = styled.div`
-  padding: 20px;
-  margin-top: -100px;
+  padding: 0 40px 20px 40px;
+  margin-top: -30px;
+  padding-right:10px;
   position: relative;
   z-index: 1;
 `;
 
 const SectionTitle = styled.h2`
-  margin-top: 20px;
+  margin-top: 40px; 
   margin-bottom: 10px;
   font-size: 1.5rem;
+  padding-left: 20px;
 `;
 
 const Row = styled.div`
   display: flex;
-  gap: 10px;
-  overflow-x: auto;
-  padding-bottom: 10px;
+    overflow-x: visible;
+  overflow-y: visible; 
+  position: relative;  
+  gap:-20xpx;
+  padding: 0 40px 10px 40px;
+  margin-left: -20px;
 `;
-
-const Thumbnail = styled.div`
-  min-width: 280px;
-  height: 160px;
-  background-color: #333;
-  border-radius: 2px;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const ThumbnailImage = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  background-color: #333;
-  &:hover {
-    transform: scale(1.05);
-    transition: transform 0.3s ease;
-  }
-`; 
