@@ -141,9 +141,27 @@ export default function Home() {
         </ScrollButton>
       </RowContainer>
 
-      <SectionTitle>내가 찜한 시리즈</SectionTitle>
+      <SectionTitle>내가 찜한 컨텐츠</SectionTitle>
       <RowContainer>
-       </RowContainer>
+        <Row className="classic-row">
+          {movieImages.map((src, idx) => (
+            <MovieCard
+              key={`classic-${idx}`}
+              src={src}
+              alt={`Classic Movie ${idx + 1}`}
+              title={`명작 ${idx + 1}`}
+            />
+          ))}
+        </Row>
+        <ScrollButton onClick={() => {
+          const row = document.querySelector('.classic-row') as HTMLElement;
+          if (row) {
+            row.scrollBy({ left: 300, behavior: 'smooth' });
+          }
+        }}>
+          &gt;
+        </ScrollButton>
+      </RowContainer>
       </ContentWrapper>
     </Container>
   );
