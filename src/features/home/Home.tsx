@@ -1,4 +1,3 @@
-import styled from 'styled-components';
 import movie1 from "../../assets/thumnail/movie1.svg";
 import movie2 from "../../assets/thumnail/movie2.svg";
 import movie3 from "../../assets/thumnail/movie3.svg";
@@ -9,7 +8,25 @@ import movie7 from "../../assets/thumnail/movie7.svg";
 import movie8 from "../../assets/thumnail/movie8.svg";
 import banner from "../../assets/thumnail/banner.svg";
 import MovieCard from "../../components/MovieCard";
-
+import {
+  BannerButtonGroup,
+  baseButtonStyle,
+  BannerPlayButton,
+  BannerInfoButton,
+  Container,
+  Banner,
+  BannerImage,
+  BannerOverlay,
+  BannerGradient,
+  BannerContent,
+  BannerTitle,
+  BannerDescription,
+  ContentWrapper,
+  SectionTitle,
+  Row,
+  RowContainer,
+  ScrollButton
+} from "../../style.ts/Home";
 const movieImages = [
   movie1,
   movie2,
@@ -141,177 +158,28 @@ export default function Home() {
         </ScrollButton>
       </RowContainer>
 
-      <SectionTitle>내가 찜한 시리즈</SectionTitle>
+      <SectionTitle>내가 찜한 컨텐츠</SectionTitle>
       <RowContainer>
-       </RowContainer>
+        <Row className="classic-row">
+          {movieImages.map((src, idx) => (
+            <MovieCard
+              key={`classic-${idx}`}
+              src={src}
+              alt={`Classic Movie ${idx + 1}`}
+              title={`명작 ${idx + 1}`}
+            />
+          ))}
+        </Row>
+        <ScrollButton onClick={() => {
+          const row = document.querySelector('.classic-row') as HTMLElement;
+          if (row) {
+            row.scrollBy({ left: 300, behavior: 'smooth' });
+          }
+        }}>
+          &gt;
+        </ScrollButton>
+      </RowContainer>
       </ContentWrapper>
     </Container>
   );
 }
-
-const BannerButtonGroup = styled.div`
-  display: flex;
-  gap: 12px;
-  margin-top: 20px;
-`;
-
-const baseButtonStyle = `
-  background-color: white;
-  color: black;
-  font-weight: bold;
-  font-size: 1.2rem;
-  padding: 10px 24px;
-  border-radius: 4px;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
-  border: none;
-
-  &:hover {
-    background-color: rgba(255, 255, 255, 0.75);
-  }
-`;
-
-const BannerPlayButton = styled.a`
-  ${baseButtonStyle}
-
-  &::before {
-    content: '▶';
-    font-size: 1.2rem;
-  }
-`;
-
-const BannerInfoButton = styled.button`
-  ${baseButtonStyle}
-
-  &::before {
-    content: 'ℹ️';
-    font-size: 1.2rem;
-  }
-`;
-const Container = styled.div`
-  background-color: black;
-  color: white;
-  min-height: 100vh;
-  width: 100vw;
-  margin: 0;
-  box-sizing: border-box;
-  
-`;
-
-const Banner = styled.div`
-  width: 100%;
-  height: 80vh;
-  position: relative;
-`;
-
-const BannerImage = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 0;
-`;
-
-const BannerOverlay = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.45);
-  z-index: 1;
-`;
-
-const BannerGradient = styled.div`
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 40%;
-  background: linear-gradient(to bottom, rgba(0,0,0,0) 60%, rgba(0,0,0,1) 100%);
-  z-index: 2;
-`;
-
-const BannerContent = styled.div`
-  position: absolute;
-  bottom: 100px;
-  left: 50px;
-  max-width: 500px;
-  z-index: 3;
-`;
-
-const BannerTitle = styled.h1`
-  font-size: 3rem;
-  margin-bottom: 20px;
-`;
-
-const BannerDescription = styled.p`
-  font-size: 1.5rem;
-`;
-
-const ContentWrapper = styled.div`
-  padding: 0 40px 20px 40px;
-  margin-top: -30px;
-  padding-right: 60px;
-  position: relative;
-  z-index: 1;
-`;
-
-const SectionTitle = styled.h2`
-  margin-top: 40px; 
-  margin-bottom: 10px;
-  font-size: 1.5rem;
-  padding-left: 20px;
-`;
-
-const Row = styled.div`
-  display: flex;
-  overflow-x: auto;
-  overflow-y:  visible;
-  position: relative;
-  gap: -8px;
-  padding: 0 0 10px 20px;
-  margin-left: 0;
-  scrollbar-width: thin;
-  scrollbar-color: #888 #222;
-  &::-webkit-scrollbar {
-    height: 8px;
-  }
-  &::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 4px;
-  }
-  &::-webkit-scrollbar-track {
-    background: #222;
-  }
-`;
-
-const RowContainer = styled.div`
-  position: relative;
-  overflow: visible;
-`;
-
-const ScrollButton = styled.button`
-  position: absolute;
-  top: 50%;
-  right: -40px;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  font-size: 2rem;
-  color: white;
-  cursor: pointer;
-  opacity: 0.5;
-  transition: opacity 0.3s ease;
-  z-index: 10;
-
-  &:hover {
-    opacity: 1;
-  }
-`;
